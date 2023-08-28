@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{
+            background-image:url('/static/images/background-view-data.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- csv_table.html -->
+    <h1>View Data</h1>
+    <hr class="border border-primary border-3 opacity-75">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary wback">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" style="font-weight: bolder;">Waste Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item" style="padding-right: 5px;">
+                        <a class="btn btn-outline-primary " href="/data_stats" style="font-weight: bolder;">Waste Statistics</a>
+                    </li>
+                    <li class="nav-item" style="padding-right: 5px;">
+                        <a class="btn btn-outline-primary " href="/predict" style="font-weight: bolder;">Predict</a>
+                    </li>
+                    <li class="nav-item" style="padding-right: 5px;">
+                        <a class="btn btn-outline-primary" href="/contact" style="font-weight: bolder;">Contacts</a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if show_link %}
+            <li class="nav-item"  style="padding-right: 5px;">
+            <a class="btn btn-primary" href="/update-csv">Add Data</a> 
+            </li> <!-- Replace with the actual link and URL -->
+            {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item" style="padding-right: 5px;">
+                    <a class="btn btn-primary" href="/data">View Data</a>
+                </li>
+                <li class="nav-item" style="padding-right: 5px;">
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item" style="padding-right: 5px;">
+                    <a class="btn btn-primary" href="{% url 'signup' %}">Signup</a>
+                </li>
+                <li class="nav-item" style="padding-right: 5px;">
+                    <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <hr class="border border-primary border-3 opacity-75">
+    <div class="continer">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sl.</th>
+                    <th></th>
+                    <th></th>
+                    <th>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Table</th>
+                    <th></th>
+                    <!-- Add more table header cells for each column in your CSV -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td class="table-light">{{ row.serial_number }}</td>
+                    <td class="table-light">{{ row.0 }}</td>
+                    <td class="table-light">{{ row.1 }}</td>
+                    <td class="table-light">{{ row.2 }}</td>
+                    <td class="table-light">{{ row.3 }}</td>
+                    <td class="table-light">{{ row.4 }}</td>
+                    <td class="table-light">{{ row.5 }}</td>
+                    <!-- Add more table data cells for each column in your CSV -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div style="text-align: center;">
+        
+        {% if page > 1 %}
+        <a class="btn btn-primary"  href="?page={{ page|add:" -1" }}">Previous</a>
+        {% endif %}
+        {% if page < total_pages %} 
+        <a class="btn btn-primary" href="?page={{ page|add:" 1" }}">Next</a>
+        {% endif %}
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</body>
+
+</html>

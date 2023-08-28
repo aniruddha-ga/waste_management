@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image:url('/static/images/background-stat.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Data Statistics</h1>
+    <hr class="border border-primary border-3 opacity-75">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary wback">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" style="font-weight: bolder;">Waste Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item" style="padding-right: 5px;">
+                        <a class="btn btn-outline-primary active" href="/data_stats" style="font-weight: bolder;">Waste Statistics</a>
+                    </li>
+                    <li class="nav-item" style="padding-right: 5px;">
+                        <a class="btn btn-outline-primary " href="/predict" style="font-weight: bolder;">Predict</a>
+                    </li>
+                    <li class="nav-item" style="padding-right: 5px;">
+                        <a class="btn btn-outline-primary" href="/contact" style="font-weight: bolder;">Contacts</a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if show_link %}
+                <li class="nav-item"  style="padding-right: 5px;">
+                <a class="btn btn-primary" href="/update-csv">Add Data</a> 
+                </li> <!-- Replace with the actual link and URL -->
+                {% endif %}
+            {% if user.is_authenticated %}
+            <li class="nav-item" style="padding-right: 5px;">
+                <a class="btn btn-primary" href="/data">View Data</a>
+            </li>
+            <li class="nav-item" style="padding-right: 5px;">
+                <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item" style="padding-right: 5px;">
+                <a class="btn btn-primary" href="{% url 'signup' %}">Signup</a>
+            </li>
+            <li class="nav-item" style="padding-right: 5px;">
+                <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+        </div>
+    </nav>
+    <hr class="border border-primary border-3 opacity-75">
+    <br>
+    <div  class="d-flex justify-content-center" style="text-indent: 1em;
+    margin-bottom: 1.5em; font-size: 25px;">
+        <div style="display: block;">World</div><br/>
+        <br>
+        <div class="content">
+            <ul>
+                <li>The world generates about 2.01 billion tonnes of municipal solid waste (MSW) per year.</li>
+                <li>Of this, about 1.3 billion tonnes is disposed of in landfills.</li>
+                <li>About 400 million tonnes of MSW is recycled each year.</li>
+                <li>The amount of MSW generated is expected to increase by 70% by 2050.</li>
+                <li>Landfills are a major source of methane, a greenhouse gas that is 25 times more potent than carbon dioxide.</li>
+                <li>Recycling helps to reduce the amount of waste sent to landfills and incinerators.</li>
+                <li>Recycling also helps to conserve natural resources and reduce pollution.</li>
+                <li>There are many ways to reduce waste, including composting, reducing consumption, and reusing materials.</li>
+                <li>By reducing waste, we can help to protect the environment and improve our quality of life.</li>
+              </ul>
+        </div>
+    </div>
+    <div  class="d-flex justify-content-center" style="text-indent: 1em;
+    margin-bottom: 1.5em; font-size: 25px;">
+        <div style="display: block;">India</div><br/>
+        <br>
+        <div class="content">
+            <ul>
+                <li>India generates about 62 million tonnes of municipal solid waste (MSW) per year.</li>
+                <li>Of this, only about 18% is recycled.</li>
+                <li>The rest of the waste is either dumped in landfills or burned in open fires.</li>
+                <li>Landfills and open fires are major sources of pollution in India.</li>
+                <li>Pollution from waste management can cause respiratory problems, cancer, and other health problems.</li>
+                <li>Waste management is a major challenge in India.</li>
+                <li>The government is working to improve waste management in the country.</li>
+                <li>The government is building more landfills and incinerators.</li>
+                <li>The government is also promoting recycling and composting.</li>
+                <li>By improving waste management, India can protect the environment and improve the health of its people.</li>
+              </ul>
+        </div>
+    </div>
+    <div  class="d-flex justify-content-center" style="text-indent: 1em;
+    margin-bottom: 1.5em; font-size: 25px;">
+        <div style="display: block;">Karnataka</div><br/>
+        <br>
+        <div class="content">
+            <ul>
+                <li>The state generates about 11,044 tonnes per day (TPD) of municipal solid waste (MSW).</li>
+                <li>Of this, 50-55% is wet/organic waste, 30-35% is dry waste and 10-20% is construction and demolition (C&D) and inert wastes.</li>
+                <li>Bengaluru generates the most MSW in the state, at about 5,500 TPD.</li>
+                <li>Only about 60% of MSW in Karnataka is collected, and only about 20% of this is treated.</li>
+                <li>The rest of the waste is either dumped in landfills or burned in open fires.</li>
+                <li>Poor waste management practices are a major source of pollution in Karnataka, and they pose a risk to public health.</li>
+                <li>In 2016, the Karnataka government launched the Swachh Bharat Mission (SBM), a national campaign to clean up India. The SBM has helped to increase waste collection and treatment in Karnataka, but there is still much work to be done.</li>
+                <li>Karnataka faces the following challenges in waste management:</li>
+                  <ul>
+                    <li>Rapid urbanization is leading to an increase in the generation of MSW.</li>
+                    <li>The state has a limited number of landfills and treatment facilities.</li>
+                    <li>There is a lack of awareness about the importance of waste management among the public.</li>
+                    <li>There is a lack of funding for waste management.</li>
+                  </ul>
+                <li>The Karnataka government is working to address these challenges. It is planning to build more landfills and treatment facilities, and it is working to raise awareness about waste management among the public. The government is also working to secure funding for waste management.</li>
+                <li>With continued effort, Karnataka can improve its waste management system and reduce the environmental and health impacts of waste.</li>
+              </ul>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

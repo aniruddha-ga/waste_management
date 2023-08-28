@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Management</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"> <!-- not working -->
+    <!-- <style>
+        header{
+            color:#0e99db;
+            padding: 10px;
+        }
+        nav{
+        padding: 10px;
+        }
+        nav,ul{
+            list-style: none;
+        }
+        nav,ul,li,a{
+            text-decoration: none;
+            color:#009341;
+            padding-top: 26px;
+            padding-bottom: 26px;
+        }
+    </style> -->
+    <style>
+        body{
+            background-image:url('/static/images/background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .wback{
+            background-color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!-- <header>Waste Management</header> -->
+    {% if messages %}
+
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Updated successfully</strong> 
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+        </div>
+        {% endfor %}
+    {% endif %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary wback ">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="/">Waste Management</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item " style="padding-right: 5px;">
+                      <a class="btn btn-outline-primary" href="/data_stats" style="font-weight: bolder;">Waste Statistics</a>
+                  </li>
+                  <li class="nav-item" style="padding-right: 5px;">
+                      <a class="btn btn-outline-primary " href="/predict" style="font-weight: bolder;">Predict</a>
+                  </li>
+                  <li class="nav-item" style="padding-right: 5px;">
+                      <a class="btn btn-outline-primary" href="/contact" style="font-weight: bolder;">Contacts</a>
+                  </li>
+
+              </ul>
+          </div>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if show_link %}
+            <li class="nav-item"  style="padding-right: 5px;">
+            <a class="btn btn-primary" href="/update-csv">Add Data</a> 
+            </li> <!-- Replace with the actual link and URL -->
+            {% endif %}
+          {% if user.is_authenticated %}
+          <li class="nav-item" style="padding-right: 5px;">
+            <a class="btn btn-primary" href="/data">View Data</a>
+        </li>
+          <li class="nav-item" style="padding-right: 5px;">
+              <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item" style="padding-right: 5px;">
+              <a class="btn btn-primary" href="{% url 'signup' %}">Signup</a>
+          </li>
+          <li class="nav-item" style="padding-right: 5px;">
+              <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+          </li>
+          {% endif %}
+      </ul>
+      </div>
+  </nav>
+    <br>
+    <div class="container bg-transparent" style="color:white">
+        <h1>Recycling Products Details</h1>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Paper Recycling</h2>
+            <p>
+              Paper recycling involves sorting, shredding, pulping, filtering, and drying used paper to produce new paper products. Some examples of recycled paper products include newspapers, packaging materials, cardboard, and tissues.
+            </p>
+          </div>
+          <br>
+          <div class="col-md-6">
+            <h2>Plastic Recycling</h2>
+            <p>
+              Plastic recycling consists of sorting, cleaning, melting, and reprocessing plastic waste to create new products. Recycled plastic is used in various items such as bottles, containers, plastic lumber, textiles, and automotive parts.
+            </p>
+          </div>
+        </div>
+          <h2>Waste Hazards</h2>
+            <br>
+          <div class="row">
+            
+            <div class="col-md-6">
+            <h3>Chemical Waste</h3>
+            <p>
+              Chemical waste, such as from industrial processes or household products, can pose serious hazards to human health and the environment if not managed properly. It may contain toxic substances that can contaminate soil, water sources, and air if improperly disposed of.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h3>E-Waste</h3>
+            <p>
+              Electronic waste, or e-waste, refers to discarded electronic devices such as computers, smartphones, and appliances. E-waste contains hazardous materials like lead, mercury, and cadmium, which can leach into the environment if not recycled or disposed of correctly.
+            </p>
+          </div>
+        </div>
+        </div>
+        </div>
+        
+        <!-- Repeat the above structure for other recycling products -->
+    
+      </div>
+      <!-- <hr class="border border-primary border-3 opacity-75">  -->
+      
+    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

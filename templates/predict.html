@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .pred-img {
+            width: 500px;
+        }
+
+        body {
+            background-image: url('/static/images/background-pred.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="color: white;">Waste Data Statistics and Predictions</h1>
+    <hr class="border border-primary border-3 opacity-75">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary wback">
+        <div class="container-fluid">   
+            <a class="navbar-brand" href="/" style="font-weight: bolder;">Waste Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item" style="padding-right: 5px;">
+                        <a class="btn btn-outline-primary " href="/data_stats" style="font-weight: bolder;">Waste Statistics</a>
+                    </li>
+                    <li class="nav-item" style="padding-right: 5px;">
+                        <a class="btn btn-outline-primary active" href="/predict" style="font-weight: bolder;">Predict</a>
+                    </li>
+                    <li class="nav-item" style="padding-right: 5px;">
+                        <a class="btn btn-outline-primary" href="/contact" style="font-weight: bolder;">Contacts</a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if show_link %}
+            <li class="nav-item"  style="padding-right: 5px;">
+            <a class="btn btn-primary" href="/update-csv">Add Data</a> 
+            </li> <!-- Replace with the actual link and URL -->
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li class="nav-item" style="padding-right: 5px;">
+                <a class="btn btn-primary" href="/data">View Data</a>
+            </li>
+            <li class="nav-item" style="padding-right: 5px;">
+                <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item" style="padding-right: 5px;">
+                <a class="btn btn-primary" href="{% url 'signup' %}">Signup</a>
+            </li>
+            <li class="nav-item" style="padding-right: 5px;">
+                <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+        </div>
+    </nav>
+    <hr class="border border-primary border-3 opacity-75">
+    <br>
+    <div class="container bg-transparent">
+        <div class="modal-title center" style="text-align: center; color: white; font-size: 35px;">Waste prediction in next 15 Days</div>
+        <div class="content">
+            {% for image_file in image_files %}
+            <div style="padding:20px; margin: 10px; display:inline;">
+                <img class="pred-img" src="{{ image_file }}" alt="Image" width="300px" height="300px" > 
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
